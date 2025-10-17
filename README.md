@@ -1,6 +1,6 @@
 # hellotest
 
-![CI](https://github.com/paolosvp/hellotest/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/paolosvp/hellotest/actions/workflows/ci.yml/badge.svg) ![Codecov](https://codecov.io/gh/paolosvp/hellotest/branch/master/graph/badge.svg) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 Semplice webapp di esempio in Python/Flask con test.
 
