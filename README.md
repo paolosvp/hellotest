@@ -1,5 +1,7 @@
 # hellotest
 
+![CI](https://github.com/paolosvp/hellotest/actions/workflows/ci.yml/badge.svg)
+
 Semplice webapp di esempio in Python/Flask con test.
 
 ## Quickstart
