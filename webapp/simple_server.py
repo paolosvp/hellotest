@@ -1,0 +1,36 @@
+import http.server
+import socketserver
+import urllib.parse
+import sys
+import html
+
+class MyHandler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        parsed_path = urllib.parse.urlparse(self.path)
+        
+        if parsed_path.path == '/':
+            self.send_response(200)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
+            self.wfile.write(b'<h1>La mia prima Web App!</h1><p>Ciao mondo!</p><p><a href="/hello/Mario">Prova con Mario</a></p>')
+            
+        elif parsed_path.path.startswith('/hello/'):
+            nome = parsed_path.path.split('/')[-1]
+            safe_nome = html.escape(nome)
+            self.send_response(200)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
+            self.wfile.write(f'<h1>Ciao {safe_nome}!</h1><p>Benvenuto nella mia web app!</p><p><a href="/">Torna home</a></p>'.encode())
+            
+        else:
+            self.send_response(404)
+            self.send_header('Content-type', 'text/html')
+            self.end_headers()
+            self.wfile.write(b'<h1>404 - Pagina non trovata</h1>')
+
+if __name__ == '__main__':
+    PORT = 5000
+    with socketserver.TCPServer(("", PORT), MyHandler) as httpd:
+        print(f"Server in esecuzione su http://localhost:{PORT}")
+        print("Prova: http://localhost:5000/hello/TuoNome")
+        httpd.serve_forever()
