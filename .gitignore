@@ -28,3 +28,9 @@ dist/
 
 # Environments
 .env
+
+# Coverage
+coverage.xml
+
+# Local protection file
+protection.json
