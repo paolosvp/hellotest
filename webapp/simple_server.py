@@ -16,6 +16,8 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
             
         elif parsed_path.path.startswith('/hello/'):
             nome = parsed_path.path.split('/')[-1]
+            # decode percent-encoded characters before escaping
+            nome = urllib.parse.unquote(nome)
             safe_nome = html.escape(nome)
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
